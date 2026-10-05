@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Call Log — {{ call_log }}</title>
+    <style>
+        body { font-family: sans-serif; max-width: 700px; margin: 40px auto; padding: 0 20px; }
+        .card { border: 1px solid #ddd; border-radius: 8px; padding: 24px; }
+        .label { font-weight: bold; color: #555; }
+        .back { display: inline-block; margin-bottom: 16px; color: #007bff; }
+    </style>
+</head>
+<body>
+    <a class="back" href="{% url 'calls:list' %}">← Back to list</a>
+    <div class="card">
+        <h2>Call Log #{{ call_log.pk }}</h2>
+        <p><span class="label">Agent:</span> {{ call_log.agent_name }}</p>
+        <p><span class="label">Caller Number:</span> {{ call_log.caller_number }}</p>
+        <p>
+            <span class="label">Duration:</span>
+            <!-- TODO: Replace with call_log.duration_display -->
+            {{ call_log.duration_secs }}s
+        </p>
+        <p><span class="label">Status:</span> {{ call_log.get_status_display }}</p>
+        <p><span class="label">Timestamp:</span> {{ call_log.timestamp }}</p>
+        <p><span class="label">Notes:</span> {{ call_log.notes|default:"(none)" }}</p>
+
+        <div style="margin-top: 20px;">
+            <a href="{% url 'calls:edit' call_log.pk %}" style="margin-right: 8px;">✏️ Edit</a>
+            <a href="{% url 'calls:delete' call_log.pk %}" style="color: red;">🗑️ Delete</a>
+        </div>
+    </div>
+</body>
+</html>
