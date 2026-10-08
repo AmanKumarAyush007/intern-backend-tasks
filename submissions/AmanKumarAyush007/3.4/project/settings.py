@@ -24,10 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Security settings
 # Development fallback only. Set DJANGO_SECRET_KEY in production.
-SECRET_KEY = os.environ.get(
-    "DJANGO_SECRET_KEY",
-    "django-insecure-local-development-only-not-for-production"
-)
+SECRET_KEY = os.environ["DJANGO_SECRET_KEY"]
 
 DEBUG = os.environ.get("DJANGO_DEBUG", "True").lower() == "true"
 
