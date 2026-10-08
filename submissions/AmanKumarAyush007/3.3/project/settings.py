@@ -2,12 +2,15 @@
 Django settings for intern exercise 3.1.
 Preconfigured with SQLite for easy local development.
 """
-
+import os
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-intern-exercise-key-do-not-use-in-production'
+SECRET_KEY = os.environ.get(
+    'DJANGO_SECRET_KEY',
+    'django-insecure-local-development-only-not-for-production'
+)
 
 DEBUG = True
 
